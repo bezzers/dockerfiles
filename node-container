@@ -1,6 +1,6 @@
-# Set the relevant version of node
+# Set the relevant version of node and the repo
 ENV NODE_VERSION 0.12.7
-ENV REPO_PATH test
+ENV REPO_PATH [path goes here]
 
 # Set base distribution to Debian
 FROM: debian:wheezy
