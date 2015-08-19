@@ -1,5 +1,5 @@
 # Set base distribution to Debian
-FROM debian:wheezy
+FROM ubuntu
 
 # File Author / Maintainer
 MAINTAINER Paul Beswick
