@@ -9,11 +9,11 @@ ENV NODE_VERSION 0.12.7
 ENV REPO_PATH [path goes here]
 
 # Install node.js and dependencies
-RUN apt-get update && \
-    apt-get install -y wget && \
-    rm -rf /var/lib/apt/lists/* && \
-    wget -O - http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz | tar zxf - && \
-    rm "node-v$NODE_VERSION-linux-x64.tar.gz"
+RUN apt-get update
+RUN apt-get install -y wget
+RUN rm -rf /var/lib/apt/lists/*
+RUN wget -O - http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz | tar zxf -
+RUN rm "node-v$NODE_VERSION-linux-x64.tar.gz"
 
 # Provide a cached layer for node_modules
 ADD package.json /tmp/package.json
