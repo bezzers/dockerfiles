@@ -1,12 +1,12 @@
-# Set the relevant version of node and the repo
-ENV NODE_VERSION 0.12.7
-ENV REPO_PATH [path goes here]
-
 # Set base distribution to Debian
 FROM: debian:wheezy
 
 # File Author / Maintainer
 MAINTAINER Paul Beswick
+
+# Set the relevant version of node and the repo
+ENV NODE_VERSION 0.12.7
+ENV REPO_PATH [path goes here]
 
 # Install node.js and dependencies
 RUN apt-get update && \
