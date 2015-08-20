@@ -13,7 +13,6 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
     apt-get -o Acquire::ForceIPv4=true install -y wget
 RUN rm -rf /var/lib/apt/lists/*
 RUN wget -4 -O - http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz | tar zxf -
-RUN rm "node-v$NODE_VERSION-linux-x64.tar.gz"
 
 # Provide a cached layer for node_modules
 ADD package.json /tmp/package.json
