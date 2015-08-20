@@ -9,8 +9,8 @@ ENV NODE_VERSION 0.12.7
 ENV REPO_PATH [path goes here]
 
 # Install node.js and dependencies
-RUN apt-get -o Acquire::ForceIPv4=true update
-RUN apt-get install -y wget
+RUN apt-get -o Acquire::ForceIPv4=true update && \
+    apt-get -o Acquire::ForceIPv4=true install -y wget
 RUN rm -rf /var/lib/apt/lists/*
 RUN wget -O - http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz | tar zxf -
 RUN rm "node-v$NODE_VERSION-linux-x64.tar.gz"
