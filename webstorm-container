@@ -10,7 +10,6 @@ RUN apt-get update && \
     apt-get install -y lxde-core \
                        lxterminal \
                        wget \
-                       curl \
                        tightvncserver \
                        oracle-java8-installer
 
@@ -26,7 +25,7 @@ RUN wget -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
     bash webstorm.sh
     
 # Install docker
-curl -sSL https://get.docker.com/ | sh
+wget -qO- https://get.docker.com/ | sh
 
 # Clean up temporary files    
 RUN rm -rf /var/lib/apt/lists/* && \
