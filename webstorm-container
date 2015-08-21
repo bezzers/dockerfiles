@@ -9,7 +9,7 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
                        lxterminal \
                        tightvncserver \
                        wget \
-                       python-software-properties \
+                       software-properties-common \
                        firefox
 
 # Install Java, accept the license and set the environment variables
