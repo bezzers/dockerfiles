@@ -10,6 +10,7 @@ RUN apt-get update && \
     apt-get install -y lxde-core \
                        lxterminal \
                        wget \
+                       curl \
                        tightvncserver \
                        oracle-java8-installer
 
@@ -23,11 +24,15 @@ RUN apt-get install -y oracle-java8-set-default
 RUN wget -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf - && \
     cd WebStorm*/bin && \
     bash webstorm.sh
+    
+# Install docker
+curl -sSL https://get.docker.com/ | sh
 
 # Clean up temporary files    
 RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
+# Expose the port that vnc will connect to
 EXPOSE 5901
 
 USER developer
