@@ -7,20 +7,20 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
     DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::ForceIPv4=true install -y \
                        lxde-core \
                        lxterminal \
-                       wget \
                        tightvncserver \
+                       wget \
                        python-software-properties
 
 # Install Java, accept the license and set the environment variables
-RUN add-apt-repository ppa:webupd8team/java && \
-    apt-get -o Acquire::ForceIPv4=true install oracle-java8-installer && \
-    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    apt-get -o Acquire::ForceIPv4=true install -y oracle-java8-set-default
+#RUN add-apt-repository ppa:webupd8team/java && \
+#    apt-get -o Acquire::ForceIPv4=true install oracle-java8-installer && \
+#    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
+#    apt-get -o Acquire::ForceIPv4=true install -y oracle-java8-set-default
                        
 # Download and install WebStorm                       
-RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf - && \
-    cd WebStorm*/bin && \
-    bash webstorm.sh
+#RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf - && \
+#    cd WebStorm*/bin && \
+#    bash webstorm.sh
     
 # Install docker
 #wget -4 -qO- https://get.docker.com/ | sh
