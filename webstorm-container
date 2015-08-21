@@ -4,7 +4,8 @@ MAINTAINER Paul Beswick
 
 # Install the desktop and other key utilities
 RUN apt-get -o Acquire::ForceIPv4=true update && \
-    apt-get -o Acquire::ForceIPv4=true install -y lxde-core \
+    DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::ForceIPv4=true install -y \
+                       lxde-core \
                        lxterminal \
                        wget \
                        tightvncserver \
@@ -17,20 +18,19 @@ RUN add-apt-repository ppa:webupd8team/java && \
     apt-get -o Acquire::ForceIPv4=true install -y oracle-java8-set-default
                        
 # Download and install WebStorm                       
-RUN wget -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf - && \
+RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf - && \
     cd WebStorm*/bin && \
     bash webstorm.sh
     
 # Install docker
-#wget -qO- https://get.docker.com/ | sh
+#wget -4 -qO- https://get.docker.com/ | sh
 
 # Clean up temporary files    
 RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
+WORKDIR /data
+CMD ["bash"]
+
 # Expose the port that vnc will connect to
 EXPOSE 5901
-
-USER user
-#VOLUME /home/developer/.WebIde90
-#CMD /opt/phpstorm/bin/phpstorm.sh
