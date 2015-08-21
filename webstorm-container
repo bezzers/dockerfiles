@@ -1,14 +1,28 @@
-FROM debian:latest
+FROM ubuntu
 
 MAINTAINER Paul Beswick
 
-RUN apt-get update && \
-    apt-get install -y wget \
-                       default-jre \
-                       gnome \
-                       tightvncserver
+# Add the repository we need to get Java
+RUN add-apt-repository ppa:webupd8team/java
 
-RUN wget -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
+# Install the desktop and other key utilities
+RUN apt-get update && \
+    apt-get install -y lxde-core \
+                       lxterminal \
+                       wget \
+                       tightvncserver \
+                       oracle-java8-installer
+
+# Accept the Oracle license
+RUN echo   oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections                     
+                       
+# Set the java environment variables
+RUN apt-get install -y oracle-java8-set-default
+                       
+# Download and install WebStorm                       
+RUN wget -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf - && \
+    cd WebStorm*/bin && \
+    bash webstorm.sh
 
 # Clean up temporary files    
 RUN rm -rf /var/lib/apt/lists/* && \
