@@ -2,9 +2,6 @@ FROM ubuntu
 
 MAINTAINER Paul Beswick
 
-# Set up licenses and sources for Java
-#RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-
 # Install the desktop and other key utilities
 RUN apt-get -o Acquire::ForceIPv4=true update && \
     DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::ForceIPv4=true install -y \
@@ -16,11 +13,6 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
                        firefox \
                        default-jdk
 
-# Install Java, accept the license and set the environment variables
-#RUN wget -4 -O - download.oracle.com
-#RUN apt-get -o Acquire::ForceIPv4=true install -y --force-yes oracle-java8-installer
-#RUN apt-get -o Acquire::ForceIPv4=true install -y --force-yes oracle-java8-set-default
-                       
 # Download and install WebStorm                       
 RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
     
@@ -32,7 +24,7 @@ RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
 WORKDIR /data
-CMD vncserver :1 -geometry 1280x800 -depth 24 && tail -F /root/.vnc/*.log && bash /Web*/webstorm.sh &
+CMD vncserver :1 -geometry 1280x800 -depth 24 && tail -F /root/.vnc/*.log && bash /Web*/bin/webstorm.sh &
 
 # Expose the port that vnc will connect to
 EXPOSE 5901
