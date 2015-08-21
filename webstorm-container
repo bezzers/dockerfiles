@@ -17,7 +17,12 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
 
 # Download and install WebStorm                       
 RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
-RUN mkdir ./.vnc
+RUN mkdir /root/.vnc
+# Need to create the appropriate xstartup file
+ADD ./xstartup /root/.vnc/
+RUN chmod -v +x /root/.vnc/xstartup
+RUN echo 123456 | vncpasswd -f > /root/.vnc/passwd
+RUN chmod -v 600 /root/.vnc/passwd
 RUN echo "bash /Web*/bin/webstorm.sh" >> .vnc/xstartup
     
 # Install docker
