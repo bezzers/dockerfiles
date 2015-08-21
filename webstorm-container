@@ -25,7 +25,7 @@ RUN wget -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
     bash webstorm.sh
     
 # Install docker
-wget -qO- https://get.docker.com/ | sh
+#wget -qO- https://get.docker.com/ | sh
 
 # Clean up temporary files    
 RUN rm -rf /var/lib/apt/lists/* && \
@@ -34,6 +34,6 @@ RUN rm -rf /var/lib/apt/lists/* && \
 # Expose the port that vnc will connect to
 EXPOSE 5901
 
-USER developer
-VOLUME /home/developer/.WebIde90
-CMD /opt/phpstorm/bin/phpstorm.sh
+USER user
+#VOLUME /home/developer/.WebIde90
+#CMD /opt/phpstorm/bin/phpstorm.sh
