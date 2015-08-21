@@ -15,7 +15,6 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
 # Install Java, accept the license and set the environment variables
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
 RUN echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
-RUN apt-key -o Acquire::ForceIPv4=true adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
 RUN apt-get -o Acquire::ForceIPv4=true update
 RUN apt-get -o Acquire::ForceIPv4=true install oracle-java8-installer && \
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
