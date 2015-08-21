@@ -9,13 +9,14 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
                        lxterminal \
                        tightvncserver \
                        wget \
-                       python-software-properties
+                       python-software-properties \
+                       firefox
 
 # Install Java, accept the license and set the environment variables
 #RUN add-apt-repository ppa:webupd8team/java && \
-#    apt-get -o Acquire::ForceIPv4=true install oracle-java8-installer && \
-#    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-#    apt-get -o Acquire::ForceIPv4=true install -y oracle-java8-set-default
+    apt-get -o Acquire::ForceIPv4=true install oracle-java8-installer && \
+    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
+    apt-get -o Acquire::ForceIPv4=true install -y oracle-java8-set-default
                        
 # Download and install WebStorm                       
 #RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf - && \
