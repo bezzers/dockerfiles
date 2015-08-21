@@ -2,9 +2,6 @@ FROM ubuntu
 
 MAINTAINER Paul Beswick
 
-# Add the repository we need to get Java
-RUN add-apt-repository ppa:webupd8team/java
-
 # Install the desktop and other key utilities
 RUN apt-get update && \
     apt-get install -y lxde-core \
