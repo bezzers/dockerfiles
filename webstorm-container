@@ -22,9 +22,7 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
 #RUN apt-get -o Acquire::ForceIPv4=true install -y --force-yes oracle-java8-set-default
                        
 # Download and install WebStorm                       
-RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf - && \
-    cd WebStorm*/bin && \
-    bash webstorm.sh
+RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
     
 # Install docker
 #wget -4 -qO- https://get.docker.com/ | sh
@@ -34,7 +32,7 @@ RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
 WORKDIR /data
-CMD vncserver :1 -geometry 1280x800 -depth 24 && tail -F /root/.vnc/*.log
+CMD vncserver :1 -geometry 1280x800 -depth 24 && tail -F /root/.vnc/*.log && bash /Web*/webstorm.sh &
 
 # Expose the port that vnc will connect to
 EXPOSE 5901
