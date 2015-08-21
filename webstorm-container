@@ -24,7 +24,7 @@ RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
 WORKDIR /data
--CMD vncserver :1 -geometry 1280x800 -depth 24 && tail -F /root/.vnc/*.log
+CMD vncserver :1 -geometry 1280x800 -depth 24 && tail -F /root/.vnc/*.log
 
 # Expose the port that vnc will connect to
 EXPOSE 5901
