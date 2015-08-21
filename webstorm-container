@@ -17,6 +17,7 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
 
 # Download and install WebStorm                       
 RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
+RUN echo "bash /Web*/bin/webstorm.sh" >> /root/.vnc/xstartup
     
 # Install docker
 #wget -4 -qO- https://get.docker.com/ | sh
