@@ -20,9 +20,9 @@ RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zx
 RUN mkdir ~/.vnc
 # Need to create the appropriate xstartup file
 ADD ./xstartup ~/.vnc/xstartup
-RUN chmod -v +x ~/.vnc/xstartup
+RUN chmod 755 ~/.vnc/xstartup
 RUN echo 123456 | vncpasswd -f > ~/.vnc/passwd
-RUN chmod -v 600 ~/.vnc/passwd
+RUN chmod 600 ~/.vnc/passwd
 
 # Install docker
 #wget -4 -qO- https://get.docker.com/ | sh
