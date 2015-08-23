@@ -18,6 +18,7 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
 # Download and install WebStorm                       
 RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
 RUN mkdir ~/.vnc
+RUN chmod 755 ~/.vnc
 # Need to create the appropriate xstartup file
 ADD ./xstartup ~/.vnc/xstartup
 RUN ~/.vnc ls
