@@ -19,7 +19,7 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
 RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
 RUN mkdir -p /root/.vnc
 # Need to create the appropriate xstartup file
-ADD ./xstartup /root/.vnc/xstartup
+ADD ./xstartup /root/.vnc/
 RUN chmod 755 /root/.vnc/xstartup
 RUN echo 123456 | vncpasswd -f > /root/.vnc/passwd
 RUN chmod 600 /root/.vnc/passwd
