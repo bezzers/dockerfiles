@@ -21,7 +21,7 @@ RUN mkdir ~/.vnc
 RUN chmod 755 ~/.vnc
 # Need to create the appropriate xstartup file
 ADD ./xstartup ~/.vnc/xstartup
-RUN ~/.vnc ls
+RUN ls ~/.vnc
 RUN chmod 755 ~/.vnc/xstartup
 RUN echo 123456 | vncpasswd -f > ~/.vnc/passwd
 RUN chmod 600 ~/.vnc/passwd
