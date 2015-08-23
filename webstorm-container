@@ -20,6 +20,7 @@ RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zx
 RUN mkdir ~/.vnc
 # Need to create the appropriate xstartup file
 ADD ./xstartup ~/.vnc/xstartup
+RUN ~/.vnc ls
 RUN chmod 755 ~/.vnc/xstartup
 RUN echo 123456 | vncpasswd -f > ~/.vnc/passwd
 RUN chmod 600 ~/.vnc/passwd
