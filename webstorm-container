@@ -2,12 +2,14 @@ FROM ubuntu
 
 MAINTAINER Paul Beswick
 
+ENV USER=owtechssg
+
 # Install the desktop and other key utilities
 RUN apt-get -o Acquire::ForceIPv4=true update && \
     DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::ForceIPv4=true install -y \
                        lxde-core \
                        lxterminal \
-                       tigervnc-server \
+                       tightvncserver \
                        wget \
                        software-properties-common \
                        firefox \
@@ -15,12 +17,12 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
 
 # Download and install WebStorm                       
 RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
-RUN mkdir -p /root/.vnc
+RUN mkdir ~/.vnc
 # Need to create the appropriate xstartup file
-ADD ./xstartup /root/.vnc/
-RUN chmod 755 /root/.vnc/xstartup
-RUN echo 123456 | vncpasswd -f > /root/.vnc/passwd
-RUN chmod 600 /root/.vnc/passwd
+ADD ./xstartup ~/.vnc/
+RUN chmod 755 ~/.vnc/xstartup
+RUN echo 123456 | vncpasswd -f > ~/.vnc/passwd
+RUN chmod 600 ~/.vnc/passwd
 
 # Install docker
 #wget -4 -qO- https://get.docker.com/ | sh
@@ -30,7 +32,7 @@ RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
 WORKDIR /data
-CMD vncserver :1 -geometry 1920x1080 -depth 24 && tail -F /root/.vnc/*.log
+CMD vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log
 
 # Expose the port that vnc will connect to
 EXPOSE 5901
