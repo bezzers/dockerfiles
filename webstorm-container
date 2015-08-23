@@ -7,7 +7,7 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
     DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::ForceIPv4=true install -y \
                        lxde-core \
                        lxterminal \
-                       tightvncserver \
+                       tigervncserver \
                        wget \
                        software-properties-common \
                        firefox \
