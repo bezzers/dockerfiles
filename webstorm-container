@@ -33,9 +33,7 @@ RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
 WORKDIR /data
-RUN vncserver :1 -geometry 1280x800 -depth 24 && tail -F /root/.vnc/*.log
-
-CMD bash /Web*/bin/webstorm.sh
+CMD vncserver :1 -geometry 1280x800 -depth 24 && tail -F /root/.vnc/*.log
 
 # Expose the port that vnc will connect to
 EXPOSE 5901
