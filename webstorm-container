@@ -21,9 +21,9 @@ RUN useradd dev
 RUN mkdir -p /home/dev/.vnc
 RUN echo 123456 | vncpasswd -f > /home/dev/.vnc/passwd
 RUN chmod 600 /home/dev/.vnc/passwd
-#RUN echo "/etc/X11/Xsession" >> /home/dev/.vnc/xstartup
-#RUN echo "firefox &" >> /home/dev/.vnc/xstartup
-#RUN chmod 755 /home/dev/.vnc/xstartup
+RUN echo "/etc/X11/Xsession" >> /home/dev/.vnc/xstartup
+RUN echo "firefox &" >> /home/dev/.vnc/xstartup
+RUN chmod 755 /home/dev/.vnc/xstartup
 
 # Install docker
 #wget -4 -qO- https://get.docker.com/ | sh
