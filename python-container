@@ -38,7 +38,7 @@ RUN mkdir -p /home/dev/.vnc && \
     echo 123456 | vncpasswd -f > /home/dev/.vnc/passwd && \
     chmod 600 /home/dev/.vnc/passwd && \
     echo "ipython notebook &" >> /home/dev/.vnc/xstartup && \
-    echo "firefox localhost:8888 &" >> /home/dev/.vnc/xstartup && \
+    echo "iceweasel localhost:8888 &" >> /home/dev/.vnc/xstartup && \
     echo "/etc/X11/Xsession" >> /home/dev/.vnc/xstartup && \
     chmod 755 /home/dev/.vnc/xstartup
 
