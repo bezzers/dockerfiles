@@ -21,7 +21,7 @@ ENV USER=owtechssg
 RUN mkdir ~/.vnc
 RUN chmod 755 ~/.vnc
 #RUN echo 123456 | vncpasswd -f > ~/.vnc/passwd
-RUN chmod 600 ~/.vnc/passwd
+#RUN chmod 600 ~/.vnc/passwd
 
 # Need to create the appropriate xstartup file
 COPY xstartup ~/.vnc/
