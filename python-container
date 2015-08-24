@@ -4,12 +4,5 @@ FROM python:2.7
 # File author/maintainer
 MAINTAINER Paul Beswick
 
-# Update and install basic utilities
-RUN apt-get -o Acquire::ForceIPv4=true update && \
-    apt-get -o Acquire::ForceIPv4=true install -y \
-        wget \
-        curl \
-        git
-
 pip install numpy
 
