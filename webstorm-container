@@ -5,18 +5,19 @@ MAINTAINER Paul Beswick
 ENV USER=owtechssg
 
 # Install the desktop and other key utilities
-RUN apt-get -o Acquire::ForceIPv4=true update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::ForceIPv4=true install -y \
-                       lxde-core \
-                       lxterminal \
-                       tightvncserver \
-                       wget \
-                       software-properties-common \
-                       firefox \
-                       default-jdk
+#RUN apt-get -o Acquire::ForceIPv4=true update && \
+#    DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::ForceIPv4=true install -y \
+#                       lxde-core \
+#                       lxterminal \
+#                       tightvncserver \
+#                       wget \
+#                       software-properties-common \
+#                       firefox \
+#                       default-jdk
 
 # Download and install WebStorm                       
-RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
+#RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
+
 RUN mkdir ~/.vnc
 RUN chmod 755 ~/.vnc
 RUN echo 123456 | vncpasswd -f > ~/.vnc/passwd
