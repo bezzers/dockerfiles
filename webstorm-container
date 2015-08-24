@@ -29,6 +29,8 @@ RUN chmod 755 /home/dev/.vnc/xstartup
 RUN ls /home/dev/.vnc
 RUN head -30 /home/dev/.vnc/xstartup
 
+RUN chown -R dev: /home/dev
+
 # Install docker
 #wget -4 -qO- https://get.docker.com/ | sh
 
