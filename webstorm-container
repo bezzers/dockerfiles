@@ -34,11 +34,11 @@ RUN rm -rf /var/lib/apt/lists/* && \
 # Set the user to dev
 RUN chown -R dev: /home/dev
 ENV USER=dev
-USER dev
 WORKDIR /home/dev
+USER dev
 
 # Start the VNCServer
-CMD vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log &
+CMD vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log
 
 # Expose the port that vnc will connect to
 EXPOSE 5901
