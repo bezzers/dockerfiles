@@ -38,7 +38,7 @@ ENV USER=dev
 WORKDIR /home/dev
 
 # Start the VNCServer
-RUN vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log
+#CMD vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log
 
 # Expose the port that vnc will connect to
 EXPOSE 5901
