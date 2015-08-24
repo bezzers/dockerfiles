@@ -26,7 +26,7 @@ RUN chmod 755 ~/.vnc
 # Need to create the appropriate xstartup file
 COPY xstartup ~/.vnc/
 RUN ls ~/.vnc
-RUN chmod 755 /root/.vnc/xstartup
+#RUN chmod 755 /root/.vnc/xstartup
 
 
 # Install docker
