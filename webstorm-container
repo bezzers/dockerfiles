@@ -2,32 +2,28 @@ FROM ubuntu
 
 MAINTAINER Paul Beswick
 
-ENV USER=owtechssg
-
 # Install the desktop and other key utilities
-#RUN apt-get -o Acquire::ForceIPv4=true update && \
-#    DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::ForceIPv4=true install -y \
-#                       lxde-core \
-#                       lxterminal \
-#                       tightvncserver \
-#                       wget \
+RUN apt-get -o Acquire::ForceIPv4=true update && \
+    DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::ForceIPv4=true install -y \
+                       lxde-core \
+                       lxterminal \
+                       tightvncserver \
+                       wget \
 #                       software-properties-common \
-#                       firefox \
-#                       default-jdk
+                       firefox \
+                       default-jdk
 
 # Download and install WebStorm                       
 #RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
 
+# Setup the startup script for vncserver
 RUN mkdir /root/.vnc
-RUN chmod 755 /root/.vnc
-#RUN echo 123456 | vncpasswd -f > /root/.vnc/passwd
-#RUN chmod 600 /root/.vnc/passwd
-
-# Need to create the appropriate xstartup file
+RUN echo 123456 | vncpasswd -f > /root/.vnc/passwd
+RUN chmod 600 /root/.vnc/passwd
 COPY ./xstartup /root/.vnc/
+RUN chmod 755 /root/.vnc/xstartup
 RUN ls /root/.vnc
-#RUN chmod 755 /root/.vnc/xstartup
-
+RUN head -30 /root/.vnc/xstartup
 
 # Install docker
 #wget -4 -qO- https://get.docker.com/ | sh
