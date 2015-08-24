@@ -4,5 +4,8 @@ FROM python:2.7
 # File author/maintainer
 MAINTAINER Paul Beswick
 
-RUN pip install numpy scikit
-
+RUN pip install \
+    numpy \
+    scikit-learn \
+    pandas \
+    scipy
