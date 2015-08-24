@@ -22,7 +22,7 @@ RUN adduser dev
 # Setup the startup script for vncserver
 RUN mkdir /home/dev/.vnc
 RUN echo 123456 | vncpasswd -f > /home/dev/.vnc/passwd
-RUN chmod 600 /home/edv/.vnc/passwd
+RUN chmod 600 /home/dev/.vnc/passwd
 COPY ./xstartup /home/dev/.vnc/
 RUN chmod 755 /home/dev/.vnc/xstartup
 RUN ls /home/dev/.vnc
