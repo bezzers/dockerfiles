@@ -17,7 +17,7 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
 #RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
 
 # Setup home environment
-RUN adduser dev
+RUN useradd dev
 
 # Setup the startup script for vncserver
 RUN mkdir /home/dev/.vnc
@@ -35,8 +35,8 @@ RUN head -30 /home/dev/.vnc/xstartup
 RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
-#WORKDIR /data
-ENV USER=dev
+USER dev
+WORKDIR /home/dev
 #CMD vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log
 
 # Expose the port that vnc will connect to
