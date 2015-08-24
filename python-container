@@ -4,5 +4,5 @@ FROM python:2.7
 # File author/maintainer
 MAINTAINER Paul Beswick
 
-pip install numpy
+RUN pip install numpy
 
