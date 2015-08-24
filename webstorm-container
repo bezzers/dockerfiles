@@ -18,6 +18,7 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
 
 # Setup home environment
 RUN useradd dev
+RUN mkdir /home/dev && chown -R dev: /home/dev
 
 # Setup the startup script for vncserver
 RUN mkdir /home/dev/.vnc
