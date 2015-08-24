@@ -6,8 +6,9 @@ MAINTAINER Paul Beswick
 
 RUN apt-get -o Acquire::ForceIPv4=true update
 RUN apt-get -o Acquire::ForceIPv4=true install -y \
-    libopenblas-dev \
-    libatlas3gf-base
+    libblas-dev \
+    liblapack-dev \
+    gfortran
 
 RUN pip install numpy
 RUN pip install scipy
