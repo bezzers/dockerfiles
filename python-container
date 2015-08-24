@@ -8,4 +8,10 @@ RUN pip install \
     numpy \
     scikit-learn \
     pandas \
-    scipy
+    scipy \
+    ipython \
+    matplotlib \
+    flask \
+    sqlalchemy \
+    ntlk \
+    genism
