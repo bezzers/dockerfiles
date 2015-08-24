@@ -14,7 +14,7 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
                        default-jdk
 
 # Download and install WebStorm                       
-#RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
+RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
 
 # Setup home environment and the startup script for vncserver
 RUN useradd dev
