@@ -33,14 +33,15 @@ RUN cd node-v$NODE_VERSION-linux-x64 && \
 RUN npm install -g grunt-cli
 
 # Setup home environment and the startup script for vncserver
-RUN useradd dev
-RUN mkdir -p /home/dev/.vnc
-RUN echo 123456 | vncpasswd -f > /home/dev/.vnc/passwd
-RUN chmod 600 /home/dev/.vnc/passwd
-RUN echo "firefox labs.oliverwyman.com &" >> /home/dev/.vnc/xstartup
-RUN echo "/Web*/bin/webstorm.sh &" >> /home/dev/.vnc/xstartup
-RUN echo "/etc/X11/Xsession" >> /home/dev/.vnc/xstartup
-RUN chmod 755 /home/dev/.vnc/xstartup
+RUN useradd dev && \
+    echo dev:123456 | chpasswd
+RUN mkdir -p /home/dev/.vnc && \
+    echo 123456 | vncpasswd -f > /home/dev/.vnc/passwd && \
+    chmod 600 /home/dev/.vnc/passwd && \
+    echo "firefox labs.oliverwyman.com &" >> /home/dev/.vnc/xstartup && \
+    echo "/Web*/bin/webstorm.sh &" >> /home/dev/.vnc/xstartup && \
+    echo "/etc/X11/Xsession" >> /home/dev/.vnc/xstartup && \
+    chmod 755 /home/dev/.vnc/xstartup
 
 # Install docker
 #wget -4 -qO- https://get.docker.com/ | sh
