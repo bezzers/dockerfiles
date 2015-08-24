@@ -1,0 +1,15 @@
+# Set base distribution to ubuntu
+FROM ubuntu:latest
+
+# File author/maintainer
+MAINTAINER Paul Beswick
+
+# Update and install basic utilities
+RUN apt-get update && \
+    apt-get install -y \
+        wget \
+        curl \
+        git
+
+# Install pip, python is already included in ubuntu
+RUN apt-get install -y python-pip
