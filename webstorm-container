@@ -4,7 +4,7 @@ MAINTAINER Paul Beswick
 
 # Set the DNS server to 8.8.8.8
 RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf && \
-    echo "search home" >> /etc/resolv.cong
+    echo "search home" >> /etc/resolv.conf
 
 # Install the desktop and other key utilities
 RUN apt-get -o Acquire::ForceIPv4=true update
