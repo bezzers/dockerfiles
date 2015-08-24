@@ -1,5 +1,5 @@
-# Set base distribution to ubuntu
-FROM ubuntu:latest
+# Set base distribution to the official python version
+FROM python:2.7
 
 # File author/maintainer
 MAINTAINER Paul Beswick
@@ -11,5 +11,5 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
         curl \
         git
 
-# Install pip, python is already included in ubuntu
-RUN apt-get -o Acquire::ForceIPv4=true install -y python-pip
+pip install numpy
+
