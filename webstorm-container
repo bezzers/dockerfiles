@@ -16,14 +16,18 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
 # Download and install WebStorm                       
 #RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
 
+# Setup home environment
+RUN adduser dev
+RUN mkdir /home/dev && chown -R dev: /home/dev
+
 # Setup the startup script for vncserver
-RUN mkdir /root/.vnc
-RUN echo 123456 | vncpasswd -f > /root/.vnc/passwd
-RUN chmod 600 /root/.vnc/passwd
-COPY ./xstartup /root/.vnc/
-RUN chmod 755 /root/.vnc/xstartup
-RUN ls /root/.vnc
-RUN head -30 /root/.vnc/xstartup
+RUN mkdir /home/dev/.vnc
+RUN echo 123456 | vncpasswd -f > /home/dev/.vnc/passwd
+RUN chmod 600 /home/edv/.vnc/passwd
+COPY ./xstartup /home/dev/.vnc/
+RUN chmod 755 /home/dev/.vnc/xstartup
+RUN ls /home/dev/.vnc
+RUN head -30 /home/dev/.vnc/xstartup
 
 # Install docker
 #wget -4 -qO- https://get.docker.com/ | sh
@@ -33,6 +37,7 @@ RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
 #WORKDIR /data
+ENV USER=dev
 #CMD vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log
 
 # Expose the port that vnc will connect to
