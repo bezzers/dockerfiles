@@ -30,6 +30,7 @@ RUN cd node-v$NODE_VERSION-linux-x64 && \
     cp -R bin/* /usr/local/bin && \
     cp -R lib/* /usr/local/lib && \
     cp -R share/* /usr/local/share
+RUN npm install -g grunt-cli
 
 # Setup home environment and the startup script for vncserver
 RUN useradd dev
