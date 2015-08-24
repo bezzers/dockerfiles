@@ -16,6 +16,22 @@ RUN apt-get -o Acquire::ForceIPv4=true update && \
 # Download and install WebStorm                       
 RUN wget -4 -O - download.jetbrains.com/webstorm/WebStorm-10.0.4.tar.gz | tar zxf -
 
+# Set the relevant version of node and the repo
+ENV NODE_VERSION 0.12.7
+#ENV REPO_PATH [path goes here]
+
+# Get and unpack node.js
+RUN apt-get -o Acquire::ForceIPv4=true update && \
+    apt-get -o Acquire::ForceIPv4=true install -y wget && \
+    rm -rf /var/lib/apt/lists/* && \
+    wget -4 -O - http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz | tar zxf -
+
+# Configure node.js
+RUN cd node-v$NODE_VERSION-linux-x64 && \
+    cp -R bin/* /usr/local/bin && \
+    cp -R lib/* /usr/local/lib && \
+    cp -R share/* /usr/local/share
+
 # Setup home environment and the startup script for vncserver
 RUN useradd dev
 RUN mkdir -p /home/dev/.vnc
