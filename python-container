@@ -25,8 +25,7 @@ RUN pip install gensim
 RUN pip install ipython[notebook]
 
 # Install the desktop and other key utilities
-RUN apt-get -o Acquire::ForceIPv4=true update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::ForceIPv4=true install -y \
+RUN apt-get -o Acquire::ForceIPv4=true install -y \
                        lxde-core \
                        lxterminal \
                        tightvncserver \
