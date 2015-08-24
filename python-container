@@ -4,6 +4,11 @@ FROM python:2.7
 # File author/maintainer
 MAINTAINER Paul Beswick
 
+RUN apt-get -o Acquire::ForceIPv4=true update
+RUN apt-get -o Acquire::ForceIPv4=true install -y \
+    libopenblas-dev \
+    libatlas3gf-base
+
 RUN pip install numpy
 RUN pip install scipy
 RUN pip install scikit-learn
