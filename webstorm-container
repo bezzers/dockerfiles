@@ -21,7 +21,7 @@ RUN useradd dev
 RUN mkdir -p /home/dev/.vnc
 RUN echo 123456 | vncpasswd -f > /home/dev/.vnc/passwd
 RUN chmod 600 /home/dev/.vnc/passwd
-#RUN echo "/etc/X11/Xsession &" >> /home/dev/.vnc/xstartup
+#RUN echo "/etc/X11/Xsession" >> /home/dev/.vnc/xstartup
 #RUN echo "firefox &" >> /home/dev/.vnc/xstartup
 #RUN chmod 755 /home/dev/.vnc/xstartup
 
@@ -39,8 +39,7 @@ WORKDIR /home/dev
 USER dev
 
 # Start the VNCServer
-RUN vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log &
-RUN firefox &
+CMD vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log &
 
 # Expose the port that vnc will connect to
 EXPOSE 5901
