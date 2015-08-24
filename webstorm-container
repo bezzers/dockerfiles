@@ -2,10 +2,6 @@ FROM ubuntu
 
 MAINTAINER Paul Beswick
 
-# Set the DNS server to 8.8.8.8
-RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf && \
-    echo "search home" >> /etc/resolv.conf
-
 # Install the desktop and other key utilities
 RUN apt-get -o Acquire::ForceIPv4=true update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::ForceIPv4=true install -y \
@@ -34,36 +30,38 @@ RUN cd node-v$NODE_VERSION-linux-x64 && \
     cp -R bin/* /usr/local/bin && \
     cp -R lib/* /usr/local/lib && \
     cp -R share/* /usr/local/share
+    
+# Install grunt globally with a bit of a hack to make sure it can be downloaded properly    
 RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf && \
     echo "search home" >> /etc/resolv.conf && \
     npm install -g grunt-cli
 
 # Setup home environment and the startup script for vncserver
-#RUN useradd dev && \
-#    echo dev:123456 | chpasswd
-#RUN mkdir -p /home/dev/.vnc && \
-#    echo 123456 | vncpasswd -f > /home/dev/.vnc/passwd && \
-#    chmod 600 /home/dev/.vnc/passwd && \
-#    echo "firefox labs.oliverwyman.com &" >> /home/dev/.vnc/xstartup && \
-#    echo "/Web*/bin/webstorm.sh &" >> /home/dev/.vnc/xstartup && \
-#    echo "/etc/X11/Xsession" >> /home/dev/.vnc/xstartup && \
-#    chmod 755 /home/dev/.vnc/xstartup
+RUN useradd dev && \
+    echo dev:123456 | chpasswd
+RUN mkdir -p /home/dev/.vnc && \
+    echo 123456 | vncpasswd -f > /home/dev/.vnc/passwd && \
+    chmod 600 /home/dev/.vnc/passwd && \
+    echo "firefox labs.oliverwyman.com &" >> /home/dev/.vnc/xstartup && \
+    echo "/Web*/bin/webstorm.sh &" >> /home/dev/.vnc/xstartup && \
+    echo "/etc/X11/Xsession" >> /home/dev/.vnc/xstartup && \
+    chmod 755 /home/dev/.vnc/xstartup
 
 # Install docker
 #wget -4 -qO- https://get.docker.com/ | sh
 
 # Clean up temporary files    
-#RUN rm -rf /var/lib/apt/lists/* && \
-#    rm -rf /tmp/*
+RUN rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/*
 
 # Set the user to dev
-#RUN chown -R dev: /home/dev
-#ENV USER=dev
-#WORKDIR /home/dev
-#USER dev
+RUN chown -R dev: /home/dev
+ENV USER=dev
+WORKDIR /home/dev
+USER dev
 
 # Start the VNCServer
-#CMD vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log
+CMD vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log
 
 # Expose the port that vnc will connect to
 EXPOSE 5901
