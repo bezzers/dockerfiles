@@ -22,3 +22,5 @@ RUN pip install flask
 RUN pip install sqlalchemy
 RUN pip install nltk
 RUN pip install gensim
+
+CMD ["bash"]
