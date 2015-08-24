@@ -26,7 +26,7 @@ RUN chmod 755 ~/.vnc
 # Need to create the appropriate xstartup file
 COPY xstartup ~/.vnc/
 RUN ls ~/.vnc
-RUN chmod 755 ~/.vnc/xstartup
+RUN chmod 755 /root/.vnc/xstartup
 
 
 # Install docker
@@ -36,8 +36,8 @@ RUN chmod 755 ~/.vnc/xstartup
 RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
-WORKDIR /data
-CMD vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log
+#WORKDIR /data
+#CMD vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log
 
 # Expose the port that vnc will connect to
 EXPOSE 5901
