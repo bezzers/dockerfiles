@@ -4,14 +4,13 @@ FROM python:2.7
 # File author/maintainer
 MAINTAINER Paul Beswick
 
-RUN pip install \
-    numpy \
-    scikit-learn \
-    pandas \
-    scipy \
-    ipython \
-    matplotlib \
-    flask \
-    sqlalchemy \
-    ntlk \
-    genism
+RUN pip install numpy
+RUN pip install scipy
+RUN pip install scikit-learn
+RUN pip install pandas
+RUN pip install ipython
+RUN pip install matplotlib
+RUN pip install flask
+RUN pip install sqlalchemy
+RUN pip install nltk
+RUN pip install gensim
