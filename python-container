@@ -10,7 +10,7 @@ RUN apt-get -o Acquire::ForceIPv4=true install -y \
     libblas-dev \
     liblapack-dev \
     gfortran
-    
+
 RUN pip install --upgrade pip    
 RUN pip install numpy
 RUN pip install scipy
@@ -22,5 +22,35 @@ RUN pip install flask
 RUN pip install sqlalchemy
 RUN pip install nltk
 RUN pip install gensim
+RUN pip install ipython[notebook]
 
-CMD ["bash"]
+# Install the desktop and other key utilities
+RUN apt-get -o Acquire::ForceIPv4=true update
+RUN DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::ForceIPv4=true install -y \
+                       lxde-core \
+                       lxterminal \
+                       tightvncserver \
+                       firefox 
+                       
+# Setup home environment and the startup script for vncserver
+RUN useradd dev && \
+    echo dev:123456 | chpasswd
+RUN mkdir -p /home/dev/.vnc && \
+    echo 123456 | vncpasswd -f > /home/dev/.vnc/passwd && \
+    chmod 600 /home/dev/.vnc/passwd && \
+    echo "ipython notebook &" >> /home/dev/.vnc/xstartup && \
+    echo "firefox localhost:8888 &" >> /home/dev/.vnc/xstartup && \
+    echo "/etc/X11/Xsession" >> /home/dev/.vnc/xstartup && \
+    chmod 755 /home/dev/.vnc/xstartup
+
+# Set the user to dev
+RUN chown -R dev: /home/dev
+ENV USER=dev
+WORKDIR /home/dev
+USER dev
+
+# Start the VNCServer
+CMD vncserver :1 -geometry 1920x1080 -depth 24 && tail -F ~/.vnc/*.log
+
+# Expose the port that vnc will connect to
+EXPOSE 5901
